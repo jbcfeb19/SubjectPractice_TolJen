@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:type="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>courseform</title>
+</head>
+<body>
+<form action="#"
+      method="post"
+      th:action="@{/process}"
+      th:object="${course}">
+
+
+    <!--<input th:field="*{id}" type="hidden" /> -->
+
+    Subject:<select class="form-control input-md" th:field="*{subject}">
+    <option th:each="options ${subject}"
+            th:value="${options.id}">[[${options.subjectName}}]]
+    </option>
+</select><br>
+
+    Title:<input th:field="*{title}" type="text"/>
+    <span th:errors="*{title}"
+          th:if="${#fields.hasError('title')}"></span><br>
+    Instructor:<input th:field="*{instructor}" type="text"/>
+    <span th:errors="*{instructor}"
+          th:if="${#fields.hasError('instructor')}"></span><br>
+    Description:<input th:field="*{description}" type="text"/>
+    <span th:errors="*{description}"
+          th:if="${#fields.hasError('description')}"></span><br>
+    Credits:<input th:field="*{credits}" type="text"/>
+    <span th:errors="*{credits}"
+          th:if="${#fields.hasError('credits')}"></span><br>
+
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
